@@ -8,6 +8,8 @@
             <ul>
                 <li><a href="<?php echo BASE_URL.'admin/ingresarAsesino';?>">Nuevo Asesino Serial 1</a></li>
                 <li><a href="<?php echo BASE_URL.'admin/verAsesinos';?>">Coleccion de Asesinos</a></li>
+                <li><a href="<?php echo BASE_URL.'admin/logout';?>">Desconectarse</a></li>
+                
                 <!-- Puedes agregar más secciones aquí -->
             </ul>
         </aside>
@@ -51,6 +53,6 @@ d
     <script>
         const base_url='<?php echo BASE_URL;?>';
     </script>
-    <script src="<?php echo BASE_URL.'Assets/js/pages/dashboard.js';?>"></script>
+    <script src="<?php echo BASE_URL.'Assets/js/pages/ingresarAsesino.js';?>"></script>
 </body>
 </html>

@@ -47,6 +47,15 @@ class Query extends Conexion{
         }
         return $res;
     }
+    public function delete(string $sql)
+    {
+        $this->sql = $sql;
+        $resul = $this->con->prepare($this->sql);
+        $resul->execute();
+        $data = $resul->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+    }
+    
 
 
 }

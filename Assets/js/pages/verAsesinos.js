@@ -25,11 +25,12 @@ document.addEventListener('DOMContentLoaded',()=>{
 
         const editarBtn = document.createElement("a");
         editarBtn.textContent = "Editar";
-        editarBtn.href = base_url + 'admin/verAsesinos';
+        editarBtn.href=base_url + 'admin/editarAsesino/' + asesinos[i]['id'];
         editarBtn.onclick = () => alert(`Editar ${asesino.nombre}`); // Acción para "Editar"
 
         const eliminarBtn = document.createElement("a");
         eliminarBtn.textContent = "Eliminar";
+        eliminarBtn.href=base_url + 'admin/deleteAsesino/' + asesinos[i]['id'];
         eliminarBtn.onclick = () => alert(`Eliminar ${asesino.nombre}`); // Acción para "Eliminar"
 
         // Añadir botones a la celda de opciones

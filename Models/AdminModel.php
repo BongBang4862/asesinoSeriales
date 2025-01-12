@@ -59,6 +59,75 @@ class AdminModel extends Query{
         return $res;
     }
 
+    public function actualizarAsesino($id, $data) {
+        $sql = 'UPDATE asesinos_seriales 
+                SET nombre = ?, 
+                    alias = ?, 
+                    fecha_nacimiento = ?, 
+                    fecha_fallecimiento = ?, 
+                    nacionalidad = ?, 
+                    numero_victimas = ?, 
+                    metodo_operacion = ?, 
+                    biografia = ?, 
+                    imagen_url = ?
+                WHERE id = ?;';
+        
+        $rutaFinal = $data['imagen_url']; // Ruta de la imagen actual por defecto
+        
+        // Verificar si se ha subido una nueva imagen
+        if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == UPLOAD_ERR_OK) {
+            // Obtener detalles de la imagen
+            $imagen = $_FILES['imagen']['tmp_name'];
+            $nombreImg = $_FILES['imagen']['name'];
+            $tipoImg = strtolower(pathinfo($nombreImg, PATHINFO_EXTENSION));
+            $sizeImg = $_FILES['imagen']['size'];
+            
+            // Establecer directorio de destino
+            $directorio = "Assets/uploads/"; // Debe existir en el servidor
+            
+            // Validar tipo de imagen
+            $tiposPermitidos = ['jpg', 'jpeg', 'png', 'gif'];
+            if (!in_array($tipoImg, $tiposPermitidos)) {
+                echo "El tipo de archivo no es permitido. Solo se permiten imágenes JPG, JPEG, PNG o GIF.";
+                exit;
+            }
+            
+            // Validar tamaño de la imagen (5MB máximo)
+            if ($sizeImg > 5 * 1024 * 1024) { // 5MB
+                echo "El archivo es demasiado grande. El tamaño máximo permitido es 5MB.";
+                exit;
+            }
+            
+            // Generar un nombre único para evitar conflictos
+            $nombreNuevo = time() . "_" . basename($nombreImg);
+            $rutaFinal = $directorio . $nombreNuevo;
+    
+            // Mover el archivo desde la ubicación temporal al directorio final
+            if (!move_uploaded_file($imagen, $rutaFinal)) {
+                echo "Error al subir la nueva imagen.";
+                exit;
+            }
+        }
+    
+        // Preparar datos para la consulta
+        $datos = array(
+            $data['nombre'],
+            $data['alias'],
+            $data['fecha_nacimiento'],
+            $data['fecha_fallecimiento'],
+            $data['nacionalidad'],
+            $data['numero_victimas'],
+            $data['metodo_operacion'],
+            $data['biografia'],
+            $rutaFinal,
+            $id // El identificador del asesino que se actualizará
+        );
+    
+        // Ejecutar la consulta
+        $res = $this->save($sql, $datos);
+        return $res;
+    }
+    
     public function getAsesinos() {
         $sql = 'SELECT * FROM asesinos_seriales';
         $res = $this->selectAll($sql);
@@ -69,5 +138,12 @@ class AdminModel extends Query{
         $res = $this->select($sql);
         return $res;
     }
+    
+    public function eliminarAsesino($id) {
+        $sql = 'DELETE FROM asesinos_seriales WHERE id = ' . $id;
+        $res = $this->delete($sql);
+        return $res;
+    }
+        
 }
 ?>

@@ -14,32 +14,20 @@
   </head>
   <body>
     <div class="login-container">
-      <h2>Bienvenido de nuevo</h2>
-      <form action="" id="loginForm">
-        <div class="input-group">
-          <label for="username" class="input-label">Nombre de usuario</label>
-          <input type="text" id="username" name="username" class="input-field" placeholder="Introduce tu nombre de usuario" required>
-        </div>
-        <div class="input-group">
-          <label for="password" class="input-label">Contraseña</label>
-          <input type="password" id="password" name="password" class="input-field" placeholder="Introduce tu contraseña" required>
-        </div>
-        <div class="input-group">
-          <button type="submit" class="submit-button">Iniciar sesión</button>
-        </div>
-        <div class="extra-options">
-          <a href="#" class="forgot-password-link">¿Olvidaste tu contraseña?</a>
-          <br>
-          <a href="register.html" class="register-link">¿No tienes cuenta? Regístrate</a>
-        </div>
-      </form>
+
+    Dashboard
+    <aside class="sidebar">
+            <h2>Secciones</h2>
+            <ul>
+                <li><a href="<?php echo BASE_URL.'admin/ingresarAsesino';?>">Nuevo Asesino Serial 1</a></li>
+                <li><a href="<?php echo BASE_URL.'admin/verAsesinos';?>">Coleccion de Asesinos</a></li>
+                <li><a href="<?php echo BASE_URL.'admin/logout';?>">Desconectarse</a></li>
+                
+                <!-- Puedes agregar más secciones aquí -->
+            </ul>
+        </aside>
     </div>
-    <script>
-        const base_url='<?php echo BASE_URL;?>';
-    </script>
-    <script src="<?php echo BASE_URL.'Assets/js/sweetalert2@11.js';?>"></script>
-    <script src="<?php echo BASE_URL.'Assets/js/custom.js';?>"></script>
-    <script src="<?php echo BASE_URL.'Assets/js/pages/login.js';?>"></script>
+     
   </body>
 
 </html>
