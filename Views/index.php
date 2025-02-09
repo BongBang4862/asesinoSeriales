@@ -1,21 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asesinos Seriales</title>
-</head>
-<body>
-    <a href="<?php echo BASE_URL.'principal/index';?>">Home
+<?php include_once 'Views/templates/header.php'; ?>
+
+  <!-- Main content area -->
+  <div class="flex-grow-1 p-3">
+    <form action="" id="frmBuscar" class="mb-4">
+      <label for="detalle" class="form-label">Buscar Personajes:</label>
+      <input type="text" id="detalle" name="detalle" class="form-control">
+    </form>
+
+    <div id="quick-search" class="mb-4">
+      <h2>Busquedas Rápidas</h2>
+      <ul>
+        <li><a href="<?php echo BASE_URL.'principal/buscar/ted bundy'; ?>">Ted Bundy</a></li>
+        <!-- Agrega más búsquedas rápidas si es necesario -->
+      </ul>
+    </div>
 
     <h1>Asesinos Seriales</h1>
-   
-    <div id="gallery-container"></div>
-    <script>
-        const data = <?php echo json_encode($data['asesinos']); ?>;
-        const base_url='<?php echo BASE_URL; ?>';
-    </script>
-    <script src="<?php echo BASE_URL.'Assets/js/pages/principal/index.js';?>"></script>
+    
+    <nav id="paginationContainer" class="mt-3"></nav><br>
+    <div id="galleryContainer" class="container mt-4"></div>
 
-</body>
-</html>
+
+
+    <a href="<?php echo BASE_URL; ?>" class="btn btn-primary mt-4">Volver a la página principal</a>
+  </div>
+</div>
+
+<script>
+    let data = <?php echo json_encode($data['asesinos']); ?>;
+</script>
+
+<?php include_once 'Views/templates/footer.php'; ?>

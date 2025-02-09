@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Tu Nombre">
-    <meta name="description" content="Formulario de inicio de sesión para acceder a tu cuenta de forma rápida y segura.">
-    <meta name="keywords" content="login, autenticación, inicio de sesión, formulario web">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Inicio de sesión</title>
-    <style>
-      
-    </style>
-  </head>
-  <body>
+<?php include_once 'Views/templates/header.php'; ?>
+
     <div class="login-container">
       <h2>Bienvenido de nuevo</h2>
       <form action="" id="loginForm">
@@ -34,12 +21,5 @@
         </div>
       </form>
     </div>
-    <script>
-        const base_url='<?php echo BASE_URL;?>';
-    </script>
-    <script src="<?php echo BASE_URL.'Assets/js/sweetalert2@11.js';?>"></script>
-    <script src="<?php echo BASE_URL.'Assets/js/custom.js';?>"></script>
-    <script src="<?php echo BASE_URL.'Assets/js/pages/login.js';?>"></script>
-  </body>
 
-</html>
+<?php include_once 'Views/templates/footer.php'; ?>

@@ -24,8 +24,9 @@ class Admin extends Controller
             header('Location: /asesinosseriales/admin');
             exit();
         } else {
-            $data['title'] = 'Dashboard';
-            $this->views->getView('admin', 'login');
+            $data['title'] = 'Login';
+            $data['js'] = 'login';
+            $this->views->getView('admin', 'login',$data);
         }
     }
 
@@ -74,22 +75,30 @@ class Admin extends Controller
      }
 
      public function verAsesinos() {
+        $this->verificarSesion();
         $data['asesinos'] = $this->model->getAsesinos();
+        $data['js'] = 'verAsesinos';
+        $data['title'] = 'Coleccion de Asesinos Seriales';
         $this->views->getView('admin','verAsesinos',$data);
     }
 
     public function verAsesino($id) {
         $this->verificarSesion();
         $data['asesino'] = $this->model->getAsesino($id);
+        $data['js'] = 'verAsesino';
+        $data['title'] = 'Informacion: '.$data['asesino']['alias'];
         $this->views->getView('admin','verAsesino',$data);
     }
 
     public function ingresarAsesino() {
         $this->verificarSesion();
-        $this->views->getView('admin','ingresarAsesino');
+        $data['js'] = 'ingresarAsesino';
+        $data['title'] = 'Ingresar Nuevo Asesino';
+        $this->views->getView('admin','ingresarAsesino',$data);
     }
 
     public function nuevoAsesino() {
+        $this->verificarSesion();
         $datos =$_POST;
         $res=$this->model->guardarAsesino($datos);
         //$data = array("resultado"=>$res);
@@ -98,6 +107,7 @@ class Admin extends Controller
          die();
     }
     public function actualizarAsesino($id) {
+        $this->verificarSesion();
         $datos =$_POST;
         $res=$this->model->actualizarAsesino($id,$datos);
         $data = array("resultado"=>$res);
@@ -108,12 +118,13 @@ class Admin extends Controller
     public function editarAsesino($id) {
         $this->verificarSesion();
         $data['asesino'] = $this->model->getAsesino($id);
+        $data['title'] = 'Editar Asesino: '.$data['asesino']['alias'];
+        $data['js'] = 'editarAsesino';
         $this->views->getView('admin','editarAsesino',$data);
     }
 
     public function deleteAsesino($id) {
         $this->verificarSesion();
-
         $this->model->eliminarAsesino($id);
         $this->verAsesinos();
     }

@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ver Asesino</title>
-    <link rel="stylesheet" href="/path/to/your/styles.css">
-</head>
-<body>
+<?php include 'Views/templates/header.php'; ?>
+
 <aside class="sidebar">
             <h2>Secciones</h2>
             <ul>
@@ -32,9 +25,6 @@
     </div>
 
     <script>
-        const base_url='<?php echo BASE_URL;?>';
         const asesinos = <?php echo json_encode($data['asesino']); ?>;
     </script>
-    <script src="<?php echo BASE_URL.'Assets/js/pages/verAsesino.js';?>"></script>
-</body>
-</html>
+<?php include 'Views/templates/footer.php'; ?>

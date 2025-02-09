@@ -9,3 +9,4 @@ function alertaPersonalizada(type,mensaje) {
       timer: 1500
     });
 }
+

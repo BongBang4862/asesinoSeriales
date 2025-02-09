@@ -1,53 +1,64 @@
-const asesinosLista = document.getElementById('asesinosLista');
-const alias = document.querySelector('#alias');
-
-document.addEventListener('DOMContentLoaded',()=>{
-  
-
-    // Referencia al cuerpo de la tabla
+document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.getElementById("table-body");
-    
-    // Usando un for para recorrer el array y crear filas
+  
+    // Suponiendo que `asesinos` es un array con la información
     for (let i = 0; i < asesinos.length; i++) {
-        const row = document.createElement("tr"); // Crear fila
-        console.log(asesinos.length);
-        // Crear celdas
-        const nameCell = document.createElement("td");
-        nameCell.textContent = asesinos[i]['nombre'];
-
-        const optionsCell = document.createElement("td");
-
-        
-        const verBtn = document.createElement("a");
-        verBtn.textContent = "Ver";
-        verBtn.href=base_url + 'admin/verAsesino/' + asesinos[i]['id'];
-        verBtn.onclick = () => alert(`Ver detalles de ${asesino.nombre}`); // Acción para "Ver"
-
-        const editarBtn = document.createElement("a");
-        editarBtn.textContent = "Editar";
-        editarBtn.href=base_url + 'admin/editarAsesino/' + asesinos[i]['id'];
-        editarBtn.onclick = () => alert(`Editar ${asesino.nombre}`); // Acción para "Editar"
-
-        const eliminarBtn = document.createElement("a");
-        eliminarBtn.textContent = "Eliminar";
-        eliminarBtn.href=base_url + 'admin/deleteAsesino/' + asesinos[i]['id'];
-        eliminarBtn.onclick = () => alert(`Eliminar ${asesino.nombre}`); // Acción para "Eliminar"
-
-        // Añadir botones a la celda de opciones
-        optionsCell.appendChild(verBtn);
-        optionsCell.appendChild(editarBtn);
-        optionsCell.appendChild(eliminarBtn);
-
-        // Añadir celdas a la fila
-        row.appendChild(nameCell);
-        row.appendChild(optionsCell);
-        
-        // Añadir la fila al tbody
-        tableBody.appendChild(row);
+      const asesino = asesinos[i]; // Información del asesino
+  
+      // Crear fila
+      const row = document.createElement("tr");
+  
+      // Celda para el nombre
+      const nameCell = document.createElement("td");
+      nameCell.textContent = asesino.nombre;
+  
+      // Celda para la imagen
+      const imageCell = document.createElement("td");
+      const image = document.createElement("img");
+      image.src = asesino.imagen_url ? `${base_url}${asesino.imagen_url}` : `${base_url}assets/img/default.png`;
+      image.alt = `Imagen de ${asesino.nombre}`;
+      image.style.width = "60px"; // Tamaño de la imagen
+      image.style.height = "auto";
+      image.classList.add("img-thumbnail"); // Estilo de Bootstrap
+      imageCell.appendChild(image);
+  
+      // Celda para las opciones
+      const optionsCell = document.createElement("td");
+      optionsCell.classList.add("d-flex", "gap-2");
+  
+      // Botón "Ver"
+      const verBtn = document.createElement("a");
+      verBtn.textContent = "Ver";
+      verBtn.href = `${base_url}admin/verAsesino/${asesino.id}`;
+      verBtn.className = "btn btn-info btn-sm";
+      
+  
+      // Botón "Editar"
+      const editarBtn = document.createElement("a");
+      editarBtn.textContent = "Editar";
+      editarBtn.href = `${base_url}admin/editarAsesino/${asesino.id}`;
+      editarBtn.className = "btn btn-warning btn-sm";
+     
+  
+      // Botón "Eliminar"
+      const eliminarBtn = document.createElement("a");
+      eliminarBtn.textContent = "Eliminar";
+      eliminarBtn.href = `${base_url}admin/deleteAsesino/${asesino.id}`;
+      eliminarBtn.className = "btn btn-danger btn-sm";
+      
+  
+      // Añadir botones a la celda de opciones
+      optionsCell.appendChild(verBtn);
+      optionsCell.appendChild(editarBtn);
+      optionsCell.appendChild(eliminarBtn);
+  
+      // Añadir celdas a la fila
+      row.appendChild(imageCell);
+      row.appendChild(nameCell);
+      row.appendChild(optionsCell);
+  
+      // Añadir la fila al tbody
+      tableBody.appendChild(row);
     }
-
-            
-        }
-    )
-
-    
+  });
+  

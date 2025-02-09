@@ -1,4 +1,4 @@
-<?php include 'Views/template/header.php'; ?>
+<?php include 'Views/templates/header.php'; ?>
 
 </head>
 <body>
@@ -53,11 +53,4 @@
         </main>
     </div>
 
-
-
-    <script>
-        const base_url='<?php echo BASE_URL;?>';
-    </script>
-    <script src="<?php echo BASE_URL.'Assets/js/pages/editarAsesino.js';?>"></script>
-</body>
-</html>
+<?php include 'Views/templates/footer.php'; ?>
